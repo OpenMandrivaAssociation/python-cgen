@@ -1,7 +1,7 @@
 %define	module	cgen
 %define name	python-%{module}
 %define version 2012.1
-%define rel	1
+%define rel		2
 %if %mdkversion < 201100
 %define release %mkrel %rel
 %else
@@ -21,6 +21,9 @@ BuildArch:	noarch
 Requires:	python-pytools
 BuildRequires:	python-setuptools
 BuildRequires:	python-sphinx
+%if %mdkversion < 201100
+BuildRequires:	python-virtualenv
+%endif
 BuildRequires:	python-devel
 
 %description
@@ -30,7 +33,12 @@ cgen is a Python package for generating C/C++ source code.
 %setup -q -n %{module}-%{version}
 
 %build
+%if %mdkversion < 201100
+virtualenv --distribute CGEN
+./CGEN/bin/python setup.py build
+%else
 %__python setup.py build
+%endif 
 
 pushd doc
 export PYTHONPATH=`dir -d ../build/lib* | head -1`
@@ -40,7 +48,15 @@ popd
 
 %install
 %__rm -rf %{buildroot}
+
+%if %mdkversion < 201100
+PYTHONDONTWRITEBYTECODE= ./CGEN/bin/python setup.py install --root=tmp/
+CGENROOT=`find tmp/ -name cgen-%{version}`
+%__install -d -m 755 %{buildroot}/usr
+mv -f $CGENROOT/CGEN/* %{buildroot}/usr/
+%else
 PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot}
+%endif
 
 %clean
 %__rm -rf %{buildroot}
