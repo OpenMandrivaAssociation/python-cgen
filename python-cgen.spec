@@ -65,3 +65,14 @@ PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot}
 %defattr(-,root,root)
 %doc doc/build/html
 %py_sitedir/cgen*
+
+
+%changelog
+* Fri Jun 08 2012 Lev Givon <lev@mandriva.org> 2012.1-2
++ Revision: 803233
+- Use virtualenv to enable build on 2010.1.
+
+* Fri Jun 08 2012 Lev Givon <lev@mandriva.org> 2012.1-1
++ Revision: 803227
+- imported package python-cgen
+
