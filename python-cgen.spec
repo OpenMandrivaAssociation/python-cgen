@@ -1,22 +1,18 @@
 %define	module	cgen
-%define name	python-%{module}
-%define version 2012.1
 %define rel		2
 %if %mdkversion < 201100
-%define release %mkrel %rel
 %else
-%define	release %rel
 %endif
 
-Summary:	C/C++ source generation from an AST
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
-Source0:	http://pypi.python.org/packages/source/c/%{module}/%{module}-%{version}.tar.gz
+Summary:	C/C++++ source generation from an AST
+
+Name:		python-%{module}
+Version:	2013.1.2
+Release:	1
+Source0:	http://pypi.python.org/packages/source/c/cgen/cgen-%{version}.tar.gz
 License:	MIT
 Group:		Development/Python
 Url:		http://pypi.python.org/pypi/cgen/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch:	noarch
 Requires:	python-pytools
 BuildRequires:	python-setuptools
@@ -47,7 +43,6 @@ find -name .buildinfo | xargs rm -f
 popd
 
 %install
-%__rm -rf %{buildroot}
 
 %if %mdkversion < 201100
 PYTHONDONTWRITEBYTECODE= ./CGEN/bin/python setup.py install --root=tmp/
@@ -59,20 +54,10 @@ PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot}
 %endif
 
 %clean
-%__rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %doc doc/build/html
-%py_sitedir/cgen*
+%{py_puresitedir}/cgen*
 
 
-%changelog
-* Fri Jun 08 2012 Lev Givon <lev@mandriva.org> 2012.1-2
-+ Revision: 803233
-- Use virtualenv to enable build on 2010.1.
-
-* Fri Jun 08 2012 Lev Givon <lev@mandriva.org> 2012.1-1
-+ Revision: 803227
-- imported package python-cgen
 
