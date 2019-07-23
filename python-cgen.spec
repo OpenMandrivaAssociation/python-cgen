@@ -7,9 +7,9 @@
 Summary:	C/C++++ source generation from an AST
 
 Name:		python-%{module}
-Version:	2013.1.2
-Release:	2
-Source0:	http://pypi.python.org/packages/source/c/cgen/cgen-%{version}.tar.gz
+Version:	2017.1
+Release:	1
+Source0:	https://files.pythonhosted.org/packages/b7/3e/ff84929153d8f934b69cb8f4e667f03243f01e5862609f9ec4b65b640629/cgen-2017.1.tar.gz
 License:	MIT
 Group:		Development/Python
 Url:		http://pypi.python.org/pypi/cgen/
