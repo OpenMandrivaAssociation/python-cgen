@@ -7,7 +7,7 @@ Release:	1
 Source0:	https://files.pythonhosted.org/packages/source/c/cgen/cgen-%{version}.tar.gz
 License:	MIT
 Group:		Development/Python
-Url:		http://pypi.python.org/pypi/cgen/
+Url:		https://pypi.python.org/pypi/cgen/
 BuildArch:	noarch
 Requires:	python-pytools
 BuildRequires:	python-setuptools
