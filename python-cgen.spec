@@ -10,6 +10,7 @@ Group:		Development/Python
 Url:		https://pypi.python.org/pypi/cgen/
 BuildArch:	noarch
 Requires:	python-pytools
+BuildRequires:	make
 BuildRequires:	python-setuptools
 BuildRequires:	python-sphinx
 BuildRequires:	python-devel
