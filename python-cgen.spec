@@ -3,7 +3,7 @@
 Summary:	C/C++++ source generation from an AST
 Name:		python-%{module}
 Version:	2020.1
-Release:	2
+Release:	3
 Source0:	https://files.pythonhosted.org/packages/source/c/cgen/cgen-%{version}.tar.gz
 License:	MIT
 Group:		Development/Python
