@@ -1,34 +1,38 @@
-%define	module	cgen
+%define module cgen
+%bcond tests 1
 
+Name:		python-cgen
 Summary:	C/C++++ source generation from an AST
-Name:		python-%{module}
-Version:	2020.1
-Release:	3
-Source0:	https://files.pythonhosted.org/packages/source/c/cgen/cgen-%{version}.tar.gz
+Version:	2025.1
+Release:	1
 License:	MIT
 Group:		Development/Python
-Url:		https://pypi.python.org/pypi/cgen/
-BuildArch:	noarch
-Requires:	python-pytools
-BuildRequires:	make
-BuildRequires:	python-setuptools
-BuildRequires:	python-sphinx
-BuildRequires:	python-devel
-BuildSystem:	python
+URL:		https://pypi.python.org/pypi/cgen/
+Source0:	https://files.pythonhosted.org/packages/source/c/%{module}/%{module}-%{version}.tar.gz#/%{name}-%{version}.tar.gz
 
-%patchlist
-cgen-2020.1-fix-doc-build.patch
+BuildSystem:	python
+BuildArch:	noarch
+BuildRequires:	make
+BuildRequires:	pkgconfig(python3)
+BuildRequires:	python%{pyver}dist(hatchling)
+BuildRequires:	python%{pyver}dist(pip)
+BuildRequires:	python%{pyver}dist(wheel)
+%if %{with tests}
+BuildRequires:	python%{pyver}dist(pytest)
+%endif
 
 %description
-cgen is a Python package for generating C/C++ source code.
+%{name} offers a simple abstract syntax tree for C and related
+languages (C++/CUDA/OpenCL) to allow structured code generation
+from Python.
 
-%build -a
-pushd doc
-export PYTHONPATH=`dir -d ../build/lib* | head -1`
-make PAPER=letter html
-find -name .buildinfo | xargs rm -f
-popd
+%if %{with tests}
+%check
+export CI=true
+export PYTHONPATH="%{buildroot}%{python_sitelib}:${PWD}"
+pytest
+%endif
 
 %files
-%doc doc/build/html
-%{py_puresitedir}/cgen*
+%{py_puresitedir}/%{module}
+%{py_puresitedir}/%{module}-%{version}.dist-info
