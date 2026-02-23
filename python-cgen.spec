@@ -18,8 +18,10 @@ BuildRequires:	python%{pyver}dist(hatchling)
 BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(wheel)
 %if %{with tests}
-BuildRequires:	python%{pyver}dist(pytest)
 BuildRequires:	python%{pyver}dist(numpy)
+BuildRequires:	python%{pyver}dist(pytest)
+BuildRequires:	python%{pyver}dist(pytools)
+BuildRequires:	python%{pyver}dist(typing-extensions)
 %endif
 
 %description
