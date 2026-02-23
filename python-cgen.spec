@@ -19,6 +19,7 @@ BuildRequires:	python%{pyver}dist(pip)
 BuildRequires:	python%{pyver}dist(wheel)
 %if %{with tests}
 BuildRequires:	python%{pyver}dist(pytest)
+BuildRequires:	python%{pyver}dist(numpy)
 %endif
 
 %description
