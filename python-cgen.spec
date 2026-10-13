@@ -4,7 +4,7 @@
 Name:		python-cgen
 Summary:	C/C++++ source generation from an AST
 Version:	2025.1
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Python
 URL:		https://pypi.python.org/pypi/cgen/
